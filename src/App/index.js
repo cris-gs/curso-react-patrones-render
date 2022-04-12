@@ -38,7 +38,7 @@ function App() {
         />
         <TodoSearch
           searchvalue={searchValue}
-          setSearchvalue={setSearchValue}
+          setSearchValue={setSearchValue}
         />
       </TodoHeader>
 
@@ -46,9 +46,14 @@ function App() {
         error={error}
         loading={loading}
         searchedTodos={searchedTodos}
+        totalTodos={totalTodos}
+        searchText={searchValue}
         onError={() => <TodosError/>}
         onLoading={() => <TodosLoading/>}
         onEmptyTodos={() => <EmptyTodos/>}
+        onEmptySearchResults={
+          (searchText) => <p>No hay resultados para {searchText}</p>
+        }
         render={todo => (
           <TodoItem
             key={todo.text}
@@ -62,10 +67,10 @@ function App() {
 
       {!!openModal && (
         <Modal>
-          <TodoForm>
+          <TodoForm
             addTodo={addTodo}
             setOpenModal={setOpenModal}
-          </TodoForm>
+          />
         </Modal>
       )}
 
